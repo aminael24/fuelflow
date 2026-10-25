@@ -1,0 +1,29 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Installer les dépendances
+        run: pip install -r requirements.txt
+
+      - name: Lint Python
+        run: ruff check producer consumer dashboard
+
+      - name: Générer des données de test
+        run: python scripts/fake_data.py
+
+      - name: dbt run + test
+        run: |
+          dbt run  --project-dir dbt_project --profiles-dir dbt_project
+          dbt test --project-dir dbt_project --profiles-dir dbt_project

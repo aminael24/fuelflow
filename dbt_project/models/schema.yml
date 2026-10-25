@@ -1,0 +1,37 @@
+version: 2
+
+models:
+  - name: stg_prix
+    description: Événements de changement de prix, nettoyés.
+    columns:
+      - name: station_id
+        tests: [not_null]
+      - name: prix
+        tests: [not_null]
+      - name: carburant
+        tests:
+          - accepted_values:
+              values: ["Gazole", "SP95", "SP98", "E10", "E85", "GPLc"]
+
+  - name: prix_actuels
+    description: Dernier prix par station et carburant.
+    tests:
+      - unique_combination:
+          columns: [station_id, carburant]
+
+  - name: top_stations
+    description: 10 stations les moins chères par département et carburant.
+    columns:
+      - name: rang
+        tests: [not_null]
+
+  - name: hausses_recentes
+    description: Hausses de prix supérieures au seuil.
+    columns:
+      - name: hausse_pct
+        tests: [not_null]
+
+  - name: stats_departement
+    columns:
+      - name: prix_moyen
+        tests: [not_null]

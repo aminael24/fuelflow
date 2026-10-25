@@ -1,0 +1,19 @@
+name: fuelflow
+version: "1.0.0"
+config-version: 2
+profile: fuelflow
+
+model-paths: ["models"]
+target-path: "target"
+clean-targets: ["target", "dbt_packages"]
+
+vars:
+  raw_path: "data/prix/*/*.parquet"
+  seuil_hausse: 0.05
+
+models:
+  fuelflow:
+    staging:
+      +materialized: view
+    marts:
+      +materialized: table

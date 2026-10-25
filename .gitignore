@@ -1,0 +1,60 @@
+# Python
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+
+# Environment and secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# dbt
+dbt_packages/
+target/
+logs/
+profiles.yml
+
+# Streamlit
+.streamlit/secrets.toml
+
+# Local data and databases
+*.db
+*.sqlite
+*.sqlite3
+data/raw/
+data/processed/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+# Local data
+data/*.duckdb
+data/*.duckdb.wal
+data/prix/
+*.parquet
+
+# dbt local configuration
+dbt_project/.user.yml
+dbt_project/target/
+dbt_project/logs/
+dbt_project/dbt_packages/
+
+# Python environment
+.venv/
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+
+# Secrets
+.env
+.env.*
+!.env.example
